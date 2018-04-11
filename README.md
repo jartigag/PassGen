@@ -1,2 +1,2 @@
 # PassGen
-generadore contraseñas
+generador de contraseñas

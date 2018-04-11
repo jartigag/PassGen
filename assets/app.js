@@ -7,12 +7,12 @@ avalaibleChars = new Array("ABCDEFGHJKLMNOPQRSTUVWXYZ",
 					 "0123456789",
 					 "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{\|}~");
 					 //original: "~!@#$%^&*()_+-=\|[]{};:,./<>?"
-typeChars = new Array("may�scula","min�scula","n�mero","s�mbolo");
+typeChars = new Array("mayúscula","minúscula","número","símbolo");
 allowedChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{\|}~";
 
 configParams.addEventListener( 'input', function(){ // "Cuando el usuario modifica el formulario configParams"
 	if (parseInt(len.value)<0 || isNaN(parseInt(len.value))){
-		error('Debe introducir un n�mero entero positivo en la longitud');
+		error('Debe introducir un número entero positivo en la longitud');
 	} else if (!(mayus.checked || minus.checked || nums.checked || syms.checked)) {
 		error('Debe seleccionar al menos un conjunto de caracteres');
 	} else {
@@ -24,8 +24,8 @@ configParams.addEventListener( 'input', function(){ // "Cuando el usuario modifi
 btnGen.addEventListener('click', function genPasswd() {
 	chosenChars = new String();
 	passwd = new String();
-	// se establece el conjunto de caracteres para la contrase�a
-	// usando el *operador ternario* para mejor legibilidad del c�digo
+	// se establece el conjunto de caracteres para la contraseña
+	// usando el *operador ternario* para mejor legibilidad del código
 	chosenChars = ((mayus.checked) ? avalaibleChars[0] : '') +
 				((minus.checked) ? avalaibleChars[1] : '') +
 				((nums.checked) ? avalaibleChars[2] : '') +
@@ -34,7 +34,7 @@ btnGen.addEventListener('click', function genPasswd() {
 	   passwd += chosenChars.charAt(Math.floor(Math.random()*chosenChars.length));
 	}
 
-	pswd.value = passwd; // se muestra la contrase�a generada en el elemento html
+	pswd.value = passwd; // se muestra la contraseña generada en el elemento html
 
 	checkPassword();
 	testPassword();
@@ -76,33 +76,33 @@ function checkPassword() {
 	// "En cuanto a la longitud:"
 	if (pw.length < 11) {
 		if (pw.length <= 5) {
-			warning('Una contrase�a de longitud mayor que 5 ser�a m�s segura...');
+			warning('Una contraseña de longitud mayor que 5 sería más segura...');
 		} else {
-			warning('Una contrase�a de longitud mayor que 10 ser�a m�s segura...');
+			warning('Una contraseña de longitud mayor que 10 sería más segura...');
 		}
 	}
 
 	// "En cuanto al resto de campos"
 	for (i=0; i<pw.length; i++) {
 
-		// recorremos la contrase�a pw caracter a caracter
+		// recorremos la contraseña pw caracter a caracter
 		for (j=0; j<usedTypeChars.length; j++) { // iteramos entre los 4 conjuntos de caracteres
-			if (avalaibleChars[j].indexOf(pw[i]).toString()!=-1) { // si el caracter actual est� en el conjunto actual
-				usedTypeChars[j]+=1; // sumar 1 al n�mero de caracteres usados de ese conjunto
+			if (avalaibleChars[j].indexOf(pw[i]).toString()!=-1) { // si el caracter actual está en el conjunto actual
+				usedTypeChars[j]+=1; // sumar 1 al número de caracteres usados de ese conjunto
 			}
 		}
 	}
 
 	for (j=0; j<usedTypeChars.length; j++) { // iteramos entre los 4 conjuntos de caracteres
 		if (usedTypeChars[j]<1) {
-			warning('Una contrase�a con 2 '+typeChars[j]+'s m�s ser�a m�s segura...');
+			warning('Una contraseña con 2 '+typeChars[j]+'s más sería más segura...');
 		} else if (usedTypeChars[j]<2) {
-			warning('Una contrase�a con 1 '+typeChars[j]+' m�s ser�a m�s segura');
+			warning('Una contraseña con 1 '+typeChars[j]+' más sería más segura');
 		}
 	}
 
 	if (usedTypeChars[0]>=2 && usedTypeChars[1]>=2 && usedTypeChars[2]>=2 && usedTypeChars[3]>=2) {
-		warning('Buena contrase�a!');
+		warning('Buena contraseña!');
 	}
 }
 
@@ -118,11 +118,11 @@ function testPassword(passwd) {
 			points += 10;
 		}
 	}
-									// Seg�n la longitud:
+									// Según la longitud:
 	for (j=0; j<usedTypeChars.length; j++) {
 		if (usedTypeChars[j]>=1) {			// - Si hay 1 caracter de ese tipo, 10 puntos
 			points+=10;
-			if (usedTypeChars[j]>=2) {		// - Si hay 2 o m�s de ese tipo, 10 puntos extra
+			if (usedTypeChars[j]>=2) {		// - Si hay 2 o más de ese tipo, 10 puntos extra
 				points+=10;
 			}
 		}
@@ -138,14 +138,14 @@ function testPassword(passwd) {
 	}
 	// - rojo, si la fortaleza suma menos de 25 puntos
 	// - amarillo, si la fortaleza suma entre 25 y 75 puntos
-	// - verde, si la fortaleza suma m�s de 75 puntos
+	// - verde, si la fortaleza suma más de 75 puntos
 
 	strengthBar.value = points;
 	strengthNum.textContent = points+'%';
 }
 
 function warning(m) {
-	//TODO: a�adir m a lo que ya estaba en msgTxt
+	//TODO: añadir m a lo que ya estaba en msgTxt
 	secmsg.style.display='block';
 	msg.style.color = 'black';
 	msgTxt.textContent = m;
