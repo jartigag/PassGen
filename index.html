@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<title>PassGen</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/> <!-- hace que la página sea responsive -->
+		<link rel="stylesheet" type="text/css" href="assets/style.css"/>
+	</head>
+
+	<body>
+		<div id="container">
+
+			<header>
+				<img id="logo" src="assets/img/logo.png" alt="logo"/>
+				<div id="title">
+					<h1>PassGen</h1>
+					<h3>"Contraseñas seguras y sencillas de generar"</h3>
+					<p>ARTIGA_GARIJO CIORDIA_BARCOS</p>
+				</div>
+				<div id="descrip">
+					<p>
+						Con esta página podrá generar una contraseña segura en función de parámetros como los tipos de caracteres usados y la longitud.
+					</p>
+					<ul>
+						<li>En primer lugar, introduzca en el siguiente formulario qué conjuntos de caracteres quiere que compongan su contraseña.</li>
+						<li>A continuación, introduzca la longitud deseada.</li>
+						<li>Por último, pulse el botón "Generar" para obtener su contraseña, o bien pulse el botón "Borrar" en caso de querer recuperar los parámetros por defecto.</li>
+					</ul>
+				</div>
+			</header>
+
+			<main>
+
+				<fieldset>
+					<legend>Conjuntos de caracteres usados en la contraseña</legend>
+					<div class="sec">
+						<p>
+							Rellene el formulario en función del tipo de caracteres que quiere que conformen su contraseña. Combinar más conjuntos de caracteres hará su contraseña más segura.
+						</p>
+						<form id="configParams" action="#">
+							<div>
+								<label for="mayus">A-Z</label>
+								<input id="mayus" name="chars" type="checkbox" checked="checked"/>
+								<label for="minus">a-z</label>
+								<input id="minus" name="chars" type="checkbox" checked="checked"/>
+								<label for="nums">0-9</label>
+								<input id="nums" name="chars" type="checkbox" checked="checked"/>
+								<label  for="syms">!-~</label>
+								<input id="syms" name="chars" type="checkbox"/>
+								<label for="len">longitud de la contraseña</label>
+								<input id="len" name="len" type="text" size="3" value="10"/>
+							</div>
+						</form>
+					</div>
+				</fieldset>
+
+				<fieldset id="secmsg" class="sec">
+					<legend>Mensaje informativo</legend>
+					<div id="msg">
+						<p></p>
+					</div>
+				</fieldset>
+
+				<fieldset>
+				<legend> Generador </legend>
+				<div class="sec">
+					<p>
+						Pulsando "Generar" obtendrá su contraseña. Con "Reiniciar" reestablecerá los valores que tenían los parámetros inicialmente.
+					</p>
+					<button type="button" id="btnGen">Generar</button>
+					<button type="reset" id="btnRst">Reiniciar</button>
+				</div>
+				</fieldset>
+
+				<fieldset>
+					<legend>Contraseña</legend>
+					<div class="sec">
+						<p>Su contraseña es:</p>
+						<input id="pswd" type="text" value="p4s5-w0Rd"/>
+						<p>El nivel de seguridad de su contraseña es:</p>
+						<div id="strength">
+							<progress id="strengthBar" value="0" max="100"></progress>
+							<span id="strenghtNum">0%</span>
+						</div>
+					</div>
+				</fieldset>
+
+			</main>
+
+		</div>
+		<script src="assets/app.js"></script>
+	</body>
+</html>
