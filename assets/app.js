@@ -6,7 +6,6 @@ avalaibleChars = new Array("ABCDEFGHJKLMNOPQRSTUVWXYZ",
 					 "abcdefghijkmnopqrstuvwxyz",
 					 "0123456789",
 					 "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{\|}~");
-					 //original: "~!@#$%^&*()_+-=\|[]{};:,./<>?"
 typeChars = new Array("mayúscula","minúscula","número","símbolo");
 allowedChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{\|}~";
 
@@ -22,6 +21,7 @@ configParams.addEventListener( 'input', function(){ // "Cuando el usuario modifi
 });
 
 btnGen.addEventListener('click', function genPasswd() {
+	msgTxt.textContent = '';
 	chosenChars = new String();
 	passwd = new String();
 	// se establece el conjunto de caracteres para la contraseña
@@ -42,17 +42,16 @@ btnGen.addEventListener('click', function genPasswd() {
 
 btnRst.addEventListener('click', function(){
 	configParams.reset();
-	len.value='10';
 	secmsg.style.display='none';
 	resetAll();
 });
 
 pswd.addEventListener('input', function(e){ // "Cuando el usuario modifica el campo pswd"
+	msgTxt.textContent = '';
 	for (i=0; i<pswd.value.length; i++) {
-		//TODO: se comprueba si se han usado caracteres no permitidos
-		if (allowedChars.indexOf(pswd.value[i].toString())) {
-			warning('Se ha eliminado el caracter '+pswd.value[i]+' porque no pertenece al rango de caracteres permitidos');
-			pswd.value[i] = '';
+		if (allowedChars.indexOf(pswd.value[i].toString())==-1) {
+			warning('Se ha eliminado el caracter "'+pswd.value[i]+'" porque no pertenece al rango de caracteres permitidos');
+			pswd.value = pswd.value.replace(pswd.value[i],'');
 		}
 		checkPassword();
 		testPassword();
@@ -62,10 +61,9 @@ pswd.addEventListener('input', function(e){ // "Cuando el usuario modifica el ca
 function resetAll() {
 	msg.style.color = 'black';
 	msgTxt.textContent = '';
-	pswd.value = 'p4s5-w0Rd';
+	pswd.value = '';
 	strengthBar.value = 0;
 	strengthNum.textContent = '0%';
-	points = 0;
 }
 
 function checkPassword() {
@@ -145,10 +143,12 @@ function testPassword(passwd) {
 }
 
 function warning(m) {
-	//TODO: añadir m a lo que ya estaba en msgTxt
 	secmsg.style.display='block';
 	msg.style.color = 'black';
-	msgTxt.textContent = m;
+	var text = document.createTextNode(m);
+	var br = document.createElement("br");
+	msgTxt.appendChild(text);
+	msgTxt.appendChild(br);
 }
 
 function error(m) {

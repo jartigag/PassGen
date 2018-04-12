@@ -66,6 +66,9 @@ header {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+    width:100%;
+    background-image: url("img/header.jpg");
+    background-size: cover;
 }
 
 #title {
@@ -75,6 +78,7 @@ header {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	color: #FFD700;
 }
 
 #logo {
@@ -90,7 +94,7 @@ header {
 }
 
 #descrip {
-	background-color: #ffffff ;
+	background-color: rgba(255, 255, 255, .5);
 	text-align: justify;
 	padding: 1.5em;
 	margin: 1em;
